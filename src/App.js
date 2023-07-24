@@ -44,15 +44,17 @@ function App() {
         <div className="container my-3">
           <Routes>
             <Route
-              exact
               path="/"
-              Component={() => <TextForm mode={mode} showAlert={showAlert} />}
+              Component={() => (
+                <TextForm
+                  mode={mode}
+                  showAlert={showAlert}
+                  heading={"Enter Text"}
+                />
+              )}
+              // Component={TextForm}
             />
-            <Route
-              exact
-              path="/about"
-              Component={() => <About mode={mode} />}
-            />
+            <Route path="/about" Component={() => <About mode={mode} />} />
           </Routes>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+// import PropTypes from "prop-types";
+// import { Link } from "react-router-dom";
 
 function Navbar(props) {
   return (
@@ -38,7 +39,7 @@ function Navbar(props) {
 
           <div
             className={`form-check form-switch text-${
-              props.mode == "light" ? "dark" : "light"
+              props.mode === "light" ? "dark" : "light"
             }`}
           >
             <input

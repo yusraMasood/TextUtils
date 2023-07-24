@@ -40,6 +40,7 @@ function TextForm(props) {
     let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    // document.getSelection().removeAllRanges();
     props.showAlert("Text is copied to clipboard", "success");
   };
   const handleRemoveSpaces = () => {
@@ -69,31 +70,53 @@ function TextForm(props) {
           onChange={handleOnChange}
         ></textarea>
       </div>
-      <button className="btn btn-warning mx-2 my-2" onClick={handleCick}>
+      <button
+        disabled={paragraph.length === 0}
+        className="btn btn-warning mx-2 my-2"
+        onClick={handleCick}
+      >
         Convert to Uppercase{" "}
       </button>
-      <button className="btn btn-primary mx-1" onClick={handleLowCick}>
+      <button
+        disabled={paragraph.length === 0}
+        className="btn btn-primary mx-1"
+        onClick={handleLowCick}
+      >
         Convert to LowerCase{" "}
       </button>
-      <button className="btn btn-warning mx-2 my-2" onClick={handleCopy}>
+      <button
+        disabled={paragraph.length === 0}
+        className="btn btn-warning mx-2 my-2"
+        onClick={handleCopy}
+      >
         Copy Text{" "}
       </button>
 
-      <button className="btn btn-primary mx-1" onClick={handleSyllablesClick}>
+      <button
+        disabled={paragraph.length === 0}
+        className="btn btn-primary mx-1"
+        onClick={handleSyllablesClick}
+      >
         Count Vowels{" "}
       </button>
       <button
+        disabled={paragraph.length === 0}
         type="submit"
         onClick={speak}
         className="btn btn-warning mx-2 my-2"
       >
         Speak
       </button>
-      <button className="btn btn-primary mx-1" onClick={handleRemoveSpaces}>
+      <button
+        disabled={paragraph.length === 0}
+        className="btn btn-primary mx-1"
+        onClick={handleRemoveSpaces}
+      >
         Remove Extra Spaces{" "}
       </button>
       <button
         type="submit"
+        disabled={paragraph.length === 0}
         onClick={handleClearText}
         className="btn btn-warning mx-2 my-2"
       >
@@ -102,9 +125,20 @@ function TextForm(props) {
       <div className="container my-2">
         <h1>Your Text Summary</h1>
         <p>
-          {paragraph.split(" ").length - 1} words {paragraph.length} charcters
+          {
+            paragraph.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words {paragraph.length} charcters
         </p>
-        <p>{0.008 * paragraph.split(" ").length} minutes to read</p>
+        <p>
+          {0.008 *
+            paragraph.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          minutes to read
+        </p>
         <p>{count} Vowels</p>
         <h2>Preview</h2>
         <p>
